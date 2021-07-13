@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const workoutSchema = new Schema({
-  date: {
+  day: {
     type: Date,
     default: Date.now,
   },
@@ -40,6 +40,15 @@ const workoutSchema = new Schema({
 });
 
 // View the combined weight of multiple exercises from the past seven workouts on the stats page.
+
+// https://docs.mongodb.com/manual/reference/operator/aggregation/addFields/
+// $addFields appends new fields to existing documents
+
+// https://docs.mongodb.com/manual/reference/operator/aggregation/sum/
+
+// Calculates and returns the sum of numeric values. $sum ignores non-numeric values.
+
+// https://mongoosejs.com/docs/api.html#aggregate_Aggregate
 
 // View the total duration of each workout from the past seven workouts on the stats page.
 

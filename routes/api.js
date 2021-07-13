@@ -13,25 +13,33 @@ router.post("/api/workouts", ({ body }, res) => {
     });
 });
 
-// // Create a new workout range
-// router.post("/api/workouts/range", ({ body }, res) => {
-//   Workout.create(body)
-//     .then((dbWorkout) => {
-//       res.json(dbWorkout);
-//     })
-//     .catch((err) => {
-//       res.status(400).json(err);
-//     });
-// });
-
 // Update existing workout
+// new true === adding in new info
+// runValidators === making sure validators run
 router.put("/api/workouts/:id", (req, res) => {
-  Workout.findOneAndReplace(req.params.id).then(console.log);
+  Workout.findOneAndUpdate(
+    { _id: req.params.id },
+    { $push: { exercises: req.body } },
+    { new: true, runValidators: true }
+  )
+    .then((data) => {
+      res.json(data);
+      console.log("updated", data);
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
 });
 
 // Find all workouts
 router.get("/api/workouts", (req, res) => {
-  Workout.find({})
+  Workout.aggregate([
+    {
+      $addFields: {
+        totalDuration: { $sum: "$exercises.duration" },
+      },
+    },
+  ])
     .then((dbWorkout) => {
       res.json(dbWorkout);
       console.log("all workouts", dbWorkout);
@@ -42,6 +50,22 @@ router.get("/api/workouts", (req, res) => {
 });
 
 // Find all workouts in range
-router.get("/api/workouts/range", (req, res) => {});
+router.get("/api/workouts/range", (req, res) => {
+  Workout.aggregate([
+    {
+      $addFields: {
+        totalDuration: { $sum: "$exercises.duration" },
+      },
+    },
+  ])
+    .sort({ _id: -1 })
+    .limit(7)
+    .then((dbWorkout) => {
+      res.json(dbWorkout);
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+});
 
 module.exports = router;
