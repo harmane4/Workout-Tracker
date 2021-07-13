@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 dotenv.config();
 
@@ -22,7 +22,7 @@ mongoose
   .then((res) => console.log(`"MONGO": ${res.connection.host}`));
 
 // routes
-require("./routes/api.js")(app);
+app.use(require("./routes/api.js"));
 require("./routes/HTMLroutes.js")(app);
 
 app.listen(PORT, () => {

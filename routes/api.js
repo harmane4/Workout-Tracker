@@ -1,5 +1,5 @@
 const Workout = require("../models/workout.js");
-const router = require.Router();
+const router = require("express").Router();
 
 // Create a new workout
 router.post("/api/workouts", ({ body }, res) => {
@@ -13,26 +13,20 @@ router.post("/api/workouts", ({ body }, res) => {
     });
 });
 
-router.post("/api/workouts", (req, res) => {
-  Workout.create.then(data);
-});
-
-// Create a new workout range
-router.post("/api/workouts/range", ({ body }, res) => {
-  Workout.create(body)
-    .then((dbWorkout) => {
-      res.json(dbWorkout);
-    })
-    .catch((err) => {
-      res.status(400).json(err);
-    });
-});
+// // Create a new workout range
+// router.post("/api/workouts/range", ({ body }, res) => {
+//   Workout.create(body)
+//     .then((dbWorkout) => {
+//       res.json(dbWorkout);
+//     })
+//     .catch((err) => {
+//       res.status(400).json(err);
+//     });
+// });
 
 // Update existing workout
 router.put("/api/workouts/:id", (req, res) => {
-  const { _id } = req.params;
-
-  Workout.findById(_id).then(console.log);
+  Workout.findOneAndReplace(req.params.id).then(console.log);
 });
 
 // Find all workouts
