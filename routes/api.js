@@ -6,7 +6,6 @@ router.post("/api/workouts", ({ body }, res) => {
   Workout.create(body)
     .then((dbWorkout) => {
       res.json(dbWorkout);
-      console.log("new workout", dbWorkout);
     })
     .catch((err) => {
       res.status(400).json(err);
@@ -24,7 +23,6 @@ router.put("/api/workouts/:id", (req, res) => {
   )
     .then((data) => {
       res.json(data);
-      console.log("updated", data);
     })
     .catch((err) => {
       res.status(400).json(err);
@@ -42,7 +40,6 @@ router.get("/api/workouts", (req, res) => {
   ])
     .then((dbWorkout) => {
       res.json(dbWorkout);
-      console.log("all workouts", dbWorkout);
     })
     .catch((err) => {
       res.status(400).json(err);

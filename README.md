@@ -46,6 +46,12 @@ Once users have entered their workout information they can view their stats on t
 
 ## Resources
 
+[Mongoose Aggregate Functions](https://mongoosejs.com/docs/api.html#aggregate_Aggregate)
+
+[MongoDB $sum](https://docs.mongodb.com/manual/reference/operator/aggregation/sum/)
+
+[MongoDB $addFields](https://docs.mongodb.com/manual/reference/operator/aggregation/addFields/)
+
 ## Questions
 
 If you have any questions or would like to report and issue please contact me at my [GitHub](https://github.com/harmane4) or elise_harman@hotmail.com

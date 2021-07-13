@@ -39,19 +39,6 @@ const workoutSchema = new Schema({
   ],
 });
 
-// View the combined weight of multiple exercises from the past seven workouts on the stats page.
-
-// https://docs.mongodb.com/manual/reference/operator/aggregation/addFields/
-// $addFields appends new fields to existing documents
-
-// https://docs.mongodb.com/manual/reference/operator/aggregation/sum/
-
-// Calculates and returns the sum of numeric values. $sum ignores non-numeric values.
-
-// https://mongoosejs.com/docs/api.html#aggregate_Aggregate
-
-// View the total duration of each workout from the past seven workouts on the stats page.
-
 const Workout = mongoose.model("Workout", workoutSchema);
 
 module.exports = Workout;
